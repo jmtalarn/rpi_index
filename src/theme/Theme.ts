@@ -6,7 +6,11 @@ import { createGlobalStyle } from 'styled-components';
 // import chromajs from 'chroma-js';
 
 const theme = {
-    backgroundColor: '#0A1B2A',
+    background: {
+        color: 'rgb(15,15,17)',
+        gradient:
+            'radial-gradient(circle at center bottom, rgba(15,15,17,0.9920343137254902) 0%, rgba(13,41,65,1) 100%)',
+    },
     textColor: 'white',
 };
 
