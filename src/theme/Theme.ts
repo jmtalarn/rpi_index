@@ -3,14 +3,24 @@ import fontsCSS from './fonts.css';
 
 import { createGlobalStyle } from 'styled-components';
 
-// import chromajs from 'chroma-js';
+import chroma from 'chroma-js';
+
+const mainColor = chroma(15, 15, 17);
+const backgroundDarkSpotColor = chroma(13, 41, 65);
 
 const theme = {
     background: {
-        color: 'rgb(15,15,17)',
-        gradient:
-            'radial-gradient(circle at center bottom, rgba(15,15,17,0.9920343137254902) 0%, rgba(13,41,65,1) 100%)',
+        color: mainColor,
+        gradient: `radial-gradient(circle at center bottom, ${mainColor} 0%, ${backgroundDarkSpotColor} 100%)`,
     },
+    fileBox: {
+        backgroundColor: chroma('white').alpha(0.2),
+    },
+    boxShadow: {
+        intense: '10px 10px 5px 0px rgba(0,0,0,0.75);',
+        light: '5px 5px 5px 0px rgba(0,0,0,0.25);',
+    },
+
     textColor: 'white',
 };
 

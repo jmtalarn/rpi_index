@@ -1,22 +1,44 @@
-import React from 'react';
-// import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { kebabCase } from '../utils/string-utils';
+import FileBox from './FileBox';
+import Grid from './Grid';
 
-const Page = styled.div`
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-`;
-const Title = styled.h1`
-    flex: 1;
-`;
+// eslint-disable-next-line no-unused-vars
+import { FileType } from './FileType';
 
+const ErrorMessage = styled.h3`
+    color: red;
+`;
 type DocsProps = Readonly<{}>;
 
-const Docs: React.SFC<DocsProps> = () => (
-    <Page>
-        <Title>Docs list</Title>
-    </Page>
-);
+const Docs: React.SFC<DocsProps> = () => {
+    const [hasError, setErrors] = useState(false);
+    const [docs, setDocs]: [FileType[], Function] = useState([]);
+    const path = 'docs';
+
+    useEffect(() => {
+        fetch(`http://192.168.0.22/json/${path}`)
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+                setDocs(res);
+            })
+            .catch(() => setErrors(true));
+    }, []);
+
+    return (
+        <>
+            {hasError && <ErrorMessage>Something went wrong</ErrorMessage>}
+            {docs.length > 0 && (
+                <Grid>
+                    {docs.map(doc => (
+                        <FileBox key={kebabCase(doc.name)} focusKey={kebabCase(doc.name)} path={path} file={doc} />
+                    ))}
+                </Grid>
+            )}
+        </>
+    );
+};
 
 export default Docs;

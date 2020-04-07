@@ -6,10 +6,15 @@ import { stateContext } from './state/state-context';
 
 import Container from './components/Container';
 import Home from './components/Home';
+import Docs from './components/Docs';
 import Page from './components/Page';
+import Doc from './components/Doc';
 
 import { ThemeProvider } from 'styled-components';
 import theme, { ThemeGlobalStyle } from './theme/Theme';
+
+import { pdfjs } from 'react-pdf';
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 // eslint-disable-next-line no-unused-vars
 // import { UserType, AppState } from './utils/Types';
@@ -41,7 +46,7 @@ const App: React.SFC<AppProps> = () => {
                 case 'Enter':
             }
         },
-        [focusManager],
+        [moveFocusLeft, moveFocusRight, moveFocusUp, moveFocusDown],
     );
 
     useEffect(() => {
@@ -58,10 +63,15 @@ const App: React.SFC<AppProps> = () => {
                                 <Home />
                             </Route>
                             <Route path="/videos">
-                                <Page title="Videos list" backButton />
+                                <Page title="Videos list" backButton></Page>
                             </Route>
                             <Route path="/docs">
-                                <Page title="Docs list" backButton />
+                                <Page title="Docs list" backButton>
+                                    <Docs />
+                                </Page>
+                            </Route>
+                            <Route path="/doc/:path/:filename">
+                                <Doc />
                             </Route>
                         </Switch>
                     </Container>
@@ -73,7 +83,7 @@ const App: React.SFC<AppProps> = () => {
 };
 
 const focusManager = new FocusManager({
-    initialFocusPath: ['home', 'videos'],
+    initialFocusPath: ['raspberry-pi-index', 'videos'],
 });
 const SunbeamProvidedApp = () => (
     <SunbeamProvider focusManager={focusManager}>
