@@ -10,12 +10,6 @@ span,
 applet,
 object,
 iframe,
-/* h1,
-h2,
-h3,
-h4,
-h5,
-h6, */
 p,
 blockquote,
 pre,
@@ -91,6 +85,17 @@ video {
     font: inherit;
     vertical-align: baseline;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+}
 /* HTML5 display-role reset for older browsers */
 article,
 aside,
@@ -127,3 +132,6 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+body * {
+    outline: none;
+} /*Very bad for usability*/

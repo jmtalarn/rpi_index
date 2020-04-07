@@ -1,8 +1,10 @@
-// import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useRef } from 'react';
+import { useFocusable } from 'react-sunbeam';
+import { Link as RouterLink } from 'react-router-dom';
+
 import styled from 'styled-components';
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(RouterLink)`
     color: ${props => props.theme.textColor};
     font-size: 3rem;
     text-decoration: none;
@@ -12,6 +14,7 @@ const StyledLink = styled(Link)`
     border-bottom: 1px solid transparent;
     transition: all 200ms ease-in;
 
+    &.focused,
     &:focus,
     &:active,
     &:hover {
@@ -20,4 +23,28 @@ const StyledLink = styled(Link)`
         border-bottom: 1px solid ${props => props.theme.textColor};
     }
 `;
-export default StyledLink;
+
+const Link: React.SFC<any> = (props: any) => {
+    // eslint-disable-next-line no-unused-vars
+    const elementRef = useRef<HTMLAnchorElement>(null);
+
+    const { children, focusKey, to, ...restProps } = props;
+    const { focused } = useFocusable({
+        focusKey,
+        elementRef,
+        onKeyPress(event) {
+            if (event.key === 'Enter') {
+                event.stopPropagation();
+                if (elementRef && elementRef.current) {
+                    elementRef?.current?.click();
+                }
+            }
+        },
+    });
+    return (
+        <StyledLink ref={elementRef} className={focused ? 'focused' : ''} to={to} {...restProps}>
+            {children}
+        </StyledLink>
+    );
+};
+export default Link;

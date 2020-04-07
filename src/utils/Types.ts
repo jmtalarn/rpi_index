@@ -1,9 +1,3 @@
-export type UserType = {
-    email: string;
-    picture: string;
-    given_name: string;
-    family_name: string;
-    locale?: string;
-};
+export type StateType = {};
 
-export type AppState = { user: UserType | null };
+export type AppState = StateType | null;
