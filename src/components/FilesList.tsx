@@ -8,30 +8,29 @@ import ErrorMessage from './ErrorMessage';
 // eslint-disable-next-line no-unused-vars
 import { FileType } from './FileType';
 
-type DocsProps = Readonly<{}>;
+type FilesListProps = Readonly<{ path: string }>;
 
-const Docs: React.SFC<DocsProps> = () => {
+const FilesList: React.SFC<FilesListProps> = ({ path }: FilesListProps) => {
     const [hasError, setErrors] = useState(false);
-    const [docs, setDocs]: [FileType[], Function] = useState([]);
-    const path = 'docs';
+    const [files, setFilesList]: [FileType[], Function] = useState([]);
 
     useEffect(() => {
         fetch(`http://192.168.0.22/json/${path}`)
             .then(res => res.json())
             .then(res => {
                 console.log(res);
-                setDocs(res);
+                setFilesList(res);
             })
             .catch(() => setErrors(true));
-    }, []);
+    }, [path]);
 
     return (
         <>
             {hasError && <ErrorMessage>Something went wrong</ErrorMessage>}
-            {docs.length > 0 && (
+            {files.length > 0 && (
                 <Grid>
-                    {docs.map(doc => (
-                        <FileBox key={kebabCase(doc.name)} focusKey={kebabCase(doc.name)} path={path} file={doc} />
+                    {files.map(file => (
+                        <FileBox key={kebabCase(file.name)} focusKey={kebabCase(file.name)} path={path} file={file} />
                     ))}
                 </Grid>
             )}
@@ -39,4 +38,4 @@ const Docs: React.SFC<DocsProps> = () => {
     );
 };
 
-export default Docs;
+export default FilesList;

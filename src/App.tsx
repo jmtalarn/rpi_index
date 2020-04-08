@@ -6,7 +6,7 @@ import { stateContext } from './state/state-context';
 
 import Container from './components/Container';
 import Home from './components/Home';
-import Docs from './components/Docs';
+import FilesList from './components/FilesList';
 import Page from './components/Page';
 import Doc from './components/Doc';
 
@@ -63,11 +63,13 @@ const App: React.SFC<AppProps> = () => {
                                 <Home />
                             </Route>
                             <Route path="/videos">
-                                <Page title="Videos list" backButton></Page>
+                                <Page title="Videos list" backButton>
+                                    <FilesList path="videos" />
+                                </Page>
                             </Route>
                             <Route path="/docs">
                                 <Page title="Docs list" backButton>
-                                    <Docs />
+                                    <FilesList path="docs" />
                                 </Page>
                             </Route>
                             <Route path="/doc/:path/:filename">

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useFocusable } from 'react-sunbeam';
 import { Link as RouterLink } from 'react-router-dom';
-
+import ReactPlayer from 'react-player';
 import { formatDateToShortDateString, formatFileSizeMetric } from '../utils/format-utils';
 import styled from 'styled-components';
 import { Document as PDFDocument, Page as PDFPage } from 'react-pdf';
@@ -73,13 +73,22 @@ const Box: React.SFC<BoxProps> = ({ focusKey, file, path }: BoxProps) => {
         },
     });
 
+    let previewFile = null;
+    if (path === 'docs') {
+        previewFile = (
+            <PDFDocument file={`http://192.168.0.22/files/${path}/${file.name}`}>
+                <PDFPage pageNumber={1} height={200} />
+            </PDFDocument>
+        );
+    }
+    if (path === 'videos') {
+        previewFile = <ReactPlayer url={`http://192.168.0.22/files/${path}/${file.name}`} width={300} height={200} />;
+    }
     return (
         <StyledBox className={focused ? 'focused' : ''} to={`/doc/${path}/${file.name}`} ref={elementRef}>
             <h3>{file.name}</h3>
             <FileContent>
-                <PDFDocument file={`http://192.168.0.22/files/${path}/${file.name}`}>
-                    <PDFPage pageNumber={1} height={200} />
-                </PDFDocument>
+                {previewFile}
                 <FileInfo>
                     <h4>{formatDateToShortDateString(file.mtime)}</h4>
                     <h4>{formatFileSizeMetric(file.size)}</h4>
