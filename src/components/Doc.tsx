@@ -1,8 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
-// import { Focusable } from 'react-sunbeam';
+
 import styled from 'styled-components';
-// import Link from './Link';
-import { useParams } from 'react-router-dom';
+
 import { Document as PDFDocument, Page as PDFPage } from 'react-pdf';
 import Page from './Page';
 
@@ -61,9 +60,4 @@ const Doc: React.SFC<DocProps> = ({ filename, path }: DocProps) => {
     );
 };
 
-const ProcessDocParams = () => {
-    let { path, filename } = useParams();
-
-    return <Doc filename={filename} path={path} />;
-};
-export default ProcessDocParams;
+export default Doc;

@@ -3,6 +3,7 @@ import { useFocusable } from 'react-sunbeam';
 import { Link as RouterLink } from 'react-router-dom';
 import ReactPlayer from 'react-player';
 import { formatDateToShortDateString, formatFileSizeMetric } from '../utils/format-utils';
+import { isVideoFile, isPdfFile } from '../utils/file-utils';
 import styled from 'styled-components';
 import { Document as PDFDocument, Page as PDFPage } from 'react-pdf';
 // eslint-disable-next-line no-unused-vars
@@ -74,18 +75,19 @@ const Box: React.SFC<BoxProps> = ({ focusKey, file, path }: BoxProps) => {
     });
 
     let previewFile = null;
-    if (path === 'docs') {
+
+    if (isPdfFile(file.name)) {
         previewFile = (
             <PDFDocument file={`http://192.168.0.22/files/${path}/${file.name}`}>
                 <PDFPage pageNumber={1} height={200} />
             </PDFDocument>
         );
-    }
-    if (path === 'videos') {
+    } else if (isVideoFile(file.name)) {
         previewFile = <ReactPlayer url={`http://192.168.0.22/files/${path}/${file.name}`} width={300} height={200} />;
     }
+
     return (
-        <StyledBox className={focused ? 'focused' : ''} to={`/doc/${path}/${file.name}`} ref={elementRef}>
+        <StyledBox className={focused ? 'focused' : ''} to={`/viewer/${path}/${file.name}`} ref={elementRef}>
             <h3>{file.name}</h3>
             <FileContent>
                 {previewFile}

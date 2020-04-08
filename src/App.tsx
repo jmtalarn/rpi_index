@@ -8,7 +8,7 @@ import Container from './components/Container';
 import Home from './components/Home';
 import FilesList from './components/FilesList';
 import Page from './components/Page';
-import Doc from './components/Doc';
+import Viewer from './components/Viewer';
 
 import { ThemeProvider } from 'styled-components';
 import theme, { ThemeGlobalStyle } from './theme/Theme';
@@ -72,8 +72,8 @@ const App: React.SFC<AppProps> = () => {
                                     <FilesList path="docs" />
                                 </Page>
                             </Route>
-                            <Route path="/doc/:path/:filename">
-                                <Doc />
+                            <Route path="/viewer/:path/:filename">
+                                <Viewer />
                             </Route>
                         </Switch>
                     </Container>
