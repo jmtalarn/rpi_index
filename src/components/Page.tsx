@@ -24,9 +24,9 @@ const Header = styled.header`
     padding: 1rem;
 `;
 type PageProps = { image?: string; title: string; backButton?: boolean; children?: any };
-
+const FocusablePage = styled(Focusable)``;
 const Page: React.SFC<PageProps> = ({ title, children, backButton, image }: PageProps) => (
-    <Focusable style={{ height: '100%' }} focusKey={kebabCase(title)}>
+    <FocusablePage focusKey={kebabCase(title)}>
         <PageStyle>
             <Header>
                 {image && <Image src={image} />}
@@ -36,7 +36,7 @@ const Page: React.SFC<PageProps> = ({ title, children, backButton, image }: Page
 
             {children}
         </PageStyle>
-    </Focusable>
+    </FocusablePage>
 );
 Page.defaultProps = { backButton: false };
 export default Page;

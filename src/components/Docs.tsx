@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+
 import { kebabCase } from '../utils/string-utils';
 import FileBox from './FileBox';
 import Grid from './Grid';
+import ErrorMessage from './ErrorMessage';
 
 // eslint-disable-next-line no-unused-vars
 import { FileType } from './FileType';
 
-const ErrorMessage = styled.h3`
-    color: red;
-`;
 type DocsProps = Readonly<{}>;
 
 const Docs: React.SFC<DocsProps> = () => {
