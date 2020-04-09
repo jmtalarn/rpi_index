@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Focusable } from 'react-sunbeam';
-import Link from './Link';
+
+import Link from './ExternalLink';
 import Page from './Page';
 import Icon from './Icon';
 // eslint-disable-next-line no-unused-vars
