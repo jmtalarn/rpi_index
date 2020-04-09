@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Link from './Link';
 import Page from './Page';
+import Icon from './Icon';
 import ErrorMessage from './ErrorMessage';
 import { kebabCase } from '../utils/string-utils';
 // eslint-disable-next-line no-unused-vars
@@ -14,6 +15,10 @@ const HomeContent = styled.div`
     justify-content: space-around;
     height: calc(100vh - 9rem);
     flex-wrap: wrap;
+
+    .icon {
+        margin: 0 1rem;
+    }
 `;
 
 type HomeProps = Readonly<{}>;
@@ -37,15 +42,13 @@ const Home: React.SFC<HomeProps> = () => {
                 {folders.length > 0 &&
                     folders.map(folder => (
                         <Link key={kebabCase(folder.name)} focusKey={kebabCase(folder.name)} to={`/${folder.name}`}>
-                            {folder.name}
+                            {folder.name}{' '}
+                            <Icon className="icon" type={folder.name === 'docs' ? 'pdf' : 'videoplayer'} />
                         </Link>
                     ))}
 
                 <Link focusKey={'services'} to={'/services'}>
-                    Services{' '}
-                    <span role="img" aria-label="Mr. Robot">
-                        🤖
-                    </span>
+                    Services <Icon type="brain" />
                 </Link>
             </HomeContent>
         </Page>

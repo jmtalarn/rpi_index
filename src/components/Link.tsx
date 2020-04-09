@@ -14,6 +14,9 @@ const StyledLink = styled(RouterLink)`
     border-bottom: 1px solid transparent;
     transition: all 200ms ease-in;
 
+    display: flex;
+    align-items: center;
+
     &.focused,
     &:focus,
     &:active,

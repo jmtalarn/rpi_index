@@ -53,3 +53,5 @@ Also, for this process to work you need to enable the authentication configurati
 * Enabling the authentication property, by informing the property _security_aouth_enable = true_ (also in _config.json_)
 * Start the service.
 
+
+<div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>

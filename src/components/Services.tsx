@@ -3,50 +3,60 @@ import styled from 'styled-components';
 import { Focusable } from 'react-sunbeam';
 import Link from './Link';
 import Page from './Page';
-
+import Icon from './Icon';
 // eslint-disable-next-line no-unused-vars
 
 type ServicesProps = Readonly<{}>;
 
-const ServicesContent = styled(Focusable)`
+const ServicesContent = styled.div`
     height: 100%;
+
+    margin: 0 auto;
+
+    .link-text {
+        display: flex;
+        align-items: center;
+        font-size: 2rem;
+    }
+`;
+const FlexColumnContent = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-evenly;
     height: calc(100vh - 9rem);
-    width: 40%;
-    margin: 0 auto;
 `;
-
 const Services: React.SFC<ServicesProps> = () => {
     return (
         <Page title="Other services running" backButton>
             <ServicesContent>
-                <Link focusKey="kodi" to="http://192.168.0.22:8080">
-                    <span role="img" aria-label=" Kodi">
-                        🍿
-                    </span>
-                    Kodi
-                </Link>
-                <Link focusKey="tvheadend" to="http://192.168.0.22:9981/">
-                    <span role="img" aria-label=" TVHeadend">
-                        📺
-                    </span>
-                    TVHeadend
-                </Link>
-                <Link focusKey="torrent" to="http://192.168.0.22:8112/">
-                    <span role="img" aria-label=" Delunge torrent client">
-                        🏴‍☠️
-                    </span>
-                    Delunge torrent client
-                </Link>
-                <Link focusKey="iptv" to="http://192.168.0.22/livetv/">
-                    <span role="img" aria-label=" IP TV files">
-                        📡
-                    </span>
-                    IP TV files
-                </Link>
+                <FlexColumnContent>
+                    <Link focusKey="kodi" to="http://192.168.0.22:8080">
+                        <span className="link-text">
+                            <Icon type="popcorn" />
+                            Kodi
+                        </span>
+                    </Link>
+                    <Link focusKey="tvheadend" to="http://192.168.0.22:9981/">
+                        <span className="link-text">
+                            <Icon type="television" />
+                            TVHeadend
+                        </span>
+                    </Link>
+
+                    <Link focusKey="torrent" to="http://192.168.0.22:8112/">
+                        <span className="link-text">
+                            <Icon type="download" />
+                            Delunge
+                        </span>
+                    </Link>
+                    <Link focusKey="iptv" to="http://192.168.0.22/livetv/">
+                        <span className="link-text">
+                            <Icon type="radioantenna" />
+                            IP TV files
+                        </span>
+                    </Link>
+                </FlexColumnContent>
             </ServicesContent>
         </Page>
     );

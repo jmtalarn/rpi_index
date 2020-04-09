@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
 import { stateContext } from '../state/state-context';
-
+import Icon from './Icon';
 import { Focusable } from 'react-sunbeam';
 import { kebabCase } from '../utils/string-utils';
-import logo from '../Raspberry_Pi_Logo.svg';
 
 import styled from 'styled-components';
 import Link from './Link';
@@ -16,10 +15,7 @@ const PageStyle = styled.div`
 const Title = styled.h1`
     flex: 1;
 `;
-const Image = styled.img`
-    height: 3rem;
-    margin-right: 1rem;
-`;
+
 const Header = styled.header`
     display: flex;
     align-items: center;
@@ -40,7 +36,7 @@ const Page: React.SFC<PageProps> = ({ title, children, backButton, showLogo }: P
         <FocusablePage focusKey={kebabCase(title)}>
             <PageStyle>
                 <Header>
-                    {showLogo && <Image src={logo} />}
+                    {showLogo && <Icon />}
                     <Title>{title}</Title>
                     {backButton && (
                         <Link to="/" focusKey="back">
