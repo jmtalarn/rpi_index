@@ -15,10 +15,6 @@ const HomeContent = styled.div`
     height: calc(100vh - 9rem);
     flex-wrap: wrap;
 `;
-const OtherServicesWrapper = styled.div`
-    width: 100%;
-    text-align: center;
-`;
 
 type HomeProps = Readonly<{}>;
 
@@ -44,14 +40,13 @@ const Home: React.SFC<HomeProps> = () => {
                             {folder.name}
                         </Link>
                     ))}
-                <OtherServicesWrapper>
-                    <Link focusKey={'services'} to={'/services'}>
-                        Other web services{' '}
-                        <span role="img" aria-label="Mr. Robot">
-                            🤖
-                        </span>
-                    </Link>
-                </OtherServicesWrapper>
+
+                <Link focusKey={'services'} to={'/services'}>
+                    Services{' '}
+                    <span role="img" aria-label="Mr. Robot">
+                        🤖
+                    </span>
+                </Link>
             </HomeContent>
         </Page>
     );

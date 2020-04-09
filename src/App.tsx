@@ -23,7 +23,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 type AppProps = Readonly<{}>;
 
 const App: React.SFC<AppProps> = () => {
-    const [state] = useState(null);
+    const [state, setState] = useState('raspberry-pi-index');
     const { moveFocusLeft, moveFocusRight, moveFocusUp, moveFocusDown } = useSunbeam();
     const onKeyDown = useCallback(
         event => {
@@ -44,10 +44,12 @@ const App: React.SFC<AppProps> = () => {
                 case 'ArrowDown':
                     moveFocusDown();
                     return;
-                case 'Enter':
+                case 'Backspace':
+                    focusManager.setFocus([state, 'back']);
+                    return;
             }
         },
-        [moveFocusLeft, moveFocusRight, moveFocusUp, moveFocusDown],
+        [moveFocusLeft, moveFocusRight, moveFocusUp, moveFocusDown, state],
     );
 
     useEffect(() => {
@@ -57,7 +59,7 @@ const App: React.SFC<AppProps> = () => {
     return (
         <Router>
             <ThemeProvider theme={theme}>
-                <stateContext.Provider value={state}>
+                <stateContext.Provider value={[state, setState]}>
                     <Container>
                         <Switch>
                             <Route exact path="/">

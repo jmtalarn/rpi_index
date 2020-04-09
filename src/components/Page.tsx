@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { stateContext } from '../state/state-context';
+
 import { Focusable } from 'react-sunbeam';
 import { kebabCase } from '../utils/string-utils';
 import logo from '../Raspberry_Pi_Logo.svg';
@@ -26,18 +28,32 @@ const Header = styled.header`
 `;
 type PageProps = { showLogo?: boolean; title: string; backButton?: boolean; children?: any };
 const FocusablePage = styled(Focusable)``;
-const Page: React.SFC<PageProps> = ({ title, children, backButton, showLogo }: PageProps) => (
-    <FocusablePage focusKey={kebabCase(title)}>
-        <PageStyle>
-            <Header>
-                {showLogo && <Image src={logo} />}
-                <Title>{title}</Title>
-                {backButton && <Link to="/">⨉</Link>}
-            </Header>
+const Page: React.SFC<PageProps> = ({ title, children, backButton, showLogo }: PageProps) => {
+    const [, setState] = useContext(stateContext);
+    if (setState) {
+        setState(() => {
+            return kebabCase(title);
+        });
+    }
 
-            {children}
-        </PageStyle>
-    </FocusablePage>
-);
+    return (
+        <FocusablePage focusKey={kebabCase(title)}>
+            <PageStyle>
+                <Header>
+                    {showLogo && <Image src={logo} />}
+                    <Title>{title}</Title>
+                    {backButton && (
+                        <Link to="/" focusKey="back">
+                            ⨉
+                        </Link>
+                    )}
+                </Header>
+
+                {children}
+            </PageStyle>
+        </FocusablePage>
+    );
+};
+
 Page.defaultProps = { backButton: false, showLogo: true };
 export default Page;

@@ -1,3 +1,4 @@
-export type StateType = {};
+// eslint-disable-next-line no-unused-vars
+import { Dispatch, SetStateAction } from 'react';
 
-export type AppState = StateType | null;
+export type AppState = [string | null, Dispatch<SetStateAction<string>>];
