@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import ReactPlayer from 'react-player';
 import Page from './Page';
@@ -16,27 +16,27 @@ const Video: React.SFC<VideoProps> = ({ filename, path }: VideoProps) => {
     // if (myVideo.paused) myVideo.play();
     // else myVideo.pause();
 
-    const onKeyDown = useCallback(
-        event => {
-            if (!(event instanceof KeyboardEvent)) return;
-            // const videoplayer = videoplayerRef.current;
-            console.log(event);
+    // const onKeyDown = useCallback(
+    //     event => {
+    //         if (!(event instanceof KeyboardEvent)) return;
+    //         // const videoplayer = videoplayerRef.current;
+    //         console.log(event );
 
-            // switch (event.key) {
-            //     case 'ArrowRight':
-            //         videoplayer?.seekTo(3, 'seconds');
-            //         return;
-            //     case 'ArrowLeft':
-            //         videoplayer?.seekTo(3, 'seconds');
-            //         return;
-            // }
-        },
-        [videoplayerRef],
-    );
-    useEffect(() => {
-        document.addEventListener('keydown', onKeyDown);
-        return () => document.removeEventListener('keydown', onKeyDown);
-    }, [onKeyDown]);
+    //         // switch (event.key) {
+    //         //     case 'ArrowRight':
+    //         //         videoplayer?.seekTo(3, 'seconds');
+    //         //         return;
+    //         //     case 'ArrowLeft':
+    //         //         videoplayer?.seekTo(3, 'seconds');
+    //         //         return;
+    //         // }
+    //     },
+    //     [videoplayerRef],
+    // );
+    // useEffect(() => {
+    //     document.addEventListener('keydown', onKeyDown);
+    //     return () => document.removeEventListener('keydown', onKeyDown);
+    // }, [onKeyDown]);
     // console.log('Video component', path, filename);
     useEffect(() => {
         const videoplayer = videoplayerRef.current;

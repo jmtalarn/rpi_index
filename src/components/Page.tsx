@@ -1,6 +1,7 @@
 import React from 'react';
 import { Focusable } from 'react-sunbeam';
 import { kebabCase } from '../utils/string-utils';
+import logo from '../Raspberry_Pi_Logo.svg';
 
 import styled from 'styled-components';
 import Link from './Link';
@@ -23,13 +24,13 @@ const Header = styled.header`
     justify-content: space-between;
     padding: 1rem;
 `;
-type PageProps = { image?: string; title: string; backButton?: boolean; children?: any };
+type PageProps = { showLogo?: boolean; title: string; backButton?: boolean; children?: any };
 const FocusablePage = styled(Focusable)``;
-const Page: React.SFC<PageProps> = ({ title, children, backButton, image }: PageProps) => (
+const Page: React.SFC<PageProps> = ({ title, children, backButton, showLogo }: PageProps) => (
     <FocusablePage focusKey={kebabCase(title)}>
         <PageStyle>
             <Header>
-                {image && <Image src={image} />}
+                {showLogo && <Image src={logo} />}
                 <Title>{title}</Title>
                 {backButton && <Link to="/">⨉</Link>}
             </Header>
@@ -38,5 +39,5 @@ const Page: React.SFC<PageProps> = ({ title, children, backButton, image }: Page
         </PageStyle>
     </FocusablePage>
 );
-Page.defaultProps = { backButton: false };
+Page.defaultProps = { backButton: false, showLogo: true };
 export default Page;

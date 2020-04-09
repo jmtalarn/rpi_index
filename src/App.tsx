@@ -9,6 +9,7 @@ import Home from './components/Home';
 import FilesList from './components/FilesList';
 import Page from './components/Page';
 import Viewer from './components/Viewer';
+import Services from './components/Services';
 
 import { ThemeProvider } from 'styled-components';
 import theme, { ThemeGlobalStyle } from './theme/Theme';
@@ -22,8 +23,8 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 type AppProps = Readonly<{}>;
 
 const App: React.SFC<AppProps> = () => {
-    const [state, setState] = useState(null);
-    const { setFocus, moveFocusLeft, moveFocusRight, moveFocusUp, moveFocusDown } = useSunbeam();
+    const [state] = useState(null);
+    const { moveFocusLeft, moveFocusRight, moveFocusUp, moveFocusDown } = useSunbeam();
     const onKeyDown = useCallback(
         event => {
             if (!(event instanceof KeyboardEvent)) {
@@ -74,6 +75,9 @@ const App: React.SFC<AppProps> = () => {
                             </Route>
                             <Route path="/viewer/:path/:filename">
                                 <Viewer />
+                            </Route>
+                            <Route path="/services">
+                                <Services />
                             </Route>
                         </Switch>
                     </Container>
