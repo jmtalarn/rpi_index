@@ -16,6 +16,8 @@ const FileInfo = styled.div`
     justify-content: flex-end;
     flex: 1;
     height: 100%;
+    font-size: 0.8rem;
+    min-width: 5rem;
 `;
 const FileContent = styled.div`
     min-height: 200px;
@@ -92,8 +94,8 @@ const Box: React.SFC<BoxProps> = ({ focusKey, file, path }: BoxProps) => {
             <FileContent>
                 {previewFile}
                 <FileInfo>
-                    <h4>{formatDateToShortDateString(file.mtime)}</h4>
-                    <h4>{formatFileSizeMetric(file.size)}</h4>
+                    <p>{formatDateToShortDateString(file.mtime)}</p>
+                    <p>{formatFileSizeMetric(file.size)}</p>
                 </FileInfo>
             </FileContent>
         </StyledBox>

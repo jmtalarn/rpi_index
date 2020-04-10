@@ -14,6 +14,7 @@ const PageStyle = styled.div`
 `;
 const Title = styled.h1`
     flex: 1;
+    font-weight: 100;
 `;
 
 const Header = styled.header`
@@ -40,7 +41,7 @@ const Page: React.SFC<PageProps> = ({ title, children, backButton, showLogo }: P
                     <Title>{title}</Title>
                     {backButton && (
                         <Link to="/" focusKey="back">
-                            ⨉
+                            ×
                         </Link>
                     )}
                 </Header>
