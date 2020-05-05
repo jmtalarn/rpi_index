@@ -31,10 +31,10 @@ const Services: React.SFC<ServicesProps> = () => {
         <Page title="Other services running" backButton>
             <ServicesContent>
                 <FlexColumnContent>
-                    <Link focusKey="kodi" to="http://192.168.0.22:8080">
+                    <Link focusKey="kodi" to="http://192.168.0.22:8096">
                         <span className="link-text">
                             <Icon type="popcorn" />
-                            Kodi
+                            Jellyfin
                         </span>
                     </Link>
                     <Link focusKey="tvheadend" to="http://192.168.0.22:9981/">
