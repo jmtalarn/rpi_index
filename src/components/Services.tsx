@@ -44,7 +44,7 @@ const Services: React.SFC<ServicesProps> = () => {
                         <FontAwesomeIcon color="mediumorchid" icon={faPopcorn} />
                         <span className="link-text">Jellyfin</span>
                     </Link>
-                    <Link focusKey="plex" to="http://192.168.0.22::32400/web">
+                    <Link focusKey="plex" to="http://192.168.0.22:32400/web">
                         <FontAwesomeIcon color="orange" icon={faPhotoVideo} />
                         <span className="link-text">Plex</span>
                     </Link>
