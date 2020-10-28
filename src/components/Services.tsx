@@ -4,6 +4,14 @@ import styled from 'styled-components';
 import Link from './ExternalLink';
 import Page from './Page';
 import Icon from './Icon';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faTvRetro,
+    faPopcorn,
+    faPhotoVideo,
+    faSatelliteDish,
+    faCloudDownloadAlt,
+} from '@fortawesome/pro-duotone-svg-icons';
 // eslint-disable-next-line no-unused-vars
 
 type ServicesProps = Readonly<{}>;
@@ -14,6 +22,7 @@ const ServicesContent = styled.div`
     margin: 0 auto;
 
     .link-text {
+        margin-left: 1rem;
         display: flex;
         align-items: center;
         font-size: 2rem;
@@ -31,30 +40,26 @@ const Services: React.SFC<ServicesProps> = () => {
         <Page title="Other services running" backButton>
             <ServicesContent>
                 <FlexColumnContent>
-                    <Link focusKey="kodi" to="http://192.168.0.22:8096">
-                        <span className="link-text">
-                            <Icon type="popcorn" />
-                            Jellyfin
-                        </span>
+                    <Link focusKey="jellyfin" to="http://192.168.0.22:8096">
+                        <FontAwesomeIcon color="mediumorchid" icon={faPopcorn} />
+                        <span className="link-text">Jellyfin</span>
+                    </Link>
+                    <Link focusKey="plex" to="http://192.168.0.22::32400/web">
+                        <FontAwesomeIcon color="orange" icon={faPhotoVideo} />
+                        <span className="link-text">Plex</span>
                     </Link>
                     <Link focusKey="tvheadend" to="http://192.168.0.22:9981/">
-                        <span className="link-text">
-                            <Icon type="television" />
-                            TVHeadend
-                        </span>
+                        <FontAwesomeIcon color="paleTurquoise" icon={faTvRetro} />
+                        <span className="link-text">TVHeadend</span>
                     </Link>
 
                     <Link focusKey="torrent" to="http://192.168.0.22:8112/">
-                        <span className="link-text">
-                            <Icon type="download" />
-                            Delunge
-                        </span>
+                        <FontAwesomeIcon color="steelBlue" icon={faCloudDownloadAlt} />
+                        <span className="link-text">Delunge</span>
                     </Link>
                     <Link focusKey="iptv" to="http://192.168.0.22/livetv/">
-                        <span className="link-text">
-                            <Icon type="radioantenna" />
-                            IP TV files
-                        </span>
+                        <FontAwesomeIcon color="springGreen" icon={faSatelliteDish} />
+                        <span className="link-text">IP TV files</span>
                     </Link>
                 </FlexColumnContent>
             </ServicesContent>

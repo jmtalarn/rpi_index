@@ -7,6 +7,8 @@ import ErrorMessage from './ErrorMessage';
 import { kebabCase } from '../utils/string-utils';
 // eslint-disable-next-line no-unused-vars
 import { FileType } from './FileType';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMindShare, faFileAlt, faFilm } from '@fortawesome/pro-duotone-svg-icons';
 
 const HomeContent = styled.div`
     display: flex;
@@ -43,12 +45,16 @@ const Home: React.SFC<HomeProps> = () => {
                     folders.map(folder => (
                         <Link key={kebabCase(folder.name)} focusKey={kebabCase(folder.name)} to={`/${folder.name}`}>
                             {folder.name}{' '}
-                            <Icon className="icon" type={folder.name === 'docs' ? 'pdf' : 'videoplayer'} />
+                            <FontAwesomeIcon
+                                color="CornflowerBlue"
+                                icon={folder.name === 'docs' ? faFileAlt : faFilm}
+                            />
                         </Link>
                     ))}
 
                 <Link focusKey={'services'} to={'/services'}>
-                    Services <Icon type="brain" />
+                    <FontAwesomeIcon color="hotpink" icon={faMindShare} />
+                    Services
                 </Link>
             </HomeContent>
         </Page>
