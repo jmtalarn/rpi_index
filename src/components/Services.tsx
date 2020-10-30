@@ -40,12 +40,12 @@ const Services: React.SFC<ServicesProps> = () => {
         <Page title="Other services running" backButton>
             <ServicesContent>
                 <FlexColumnContent>
-                    <Link focusKey="jellyfin" to="http://192.168.0.22:8096">
+                    {/*<Link focusKey="jellyfin" to="http://192.168.0.22:8096">
                         <FontAwesomeIcon color="mediumorchid" icon={faPopcorn} />
                         <span className="link-text">Jellyfin</span>
-                    </Link>
+    </Link>*/}
                     <Link focusKey="plex" to="http://192.168.0.22:32400/web">
-                        <FontAwesomeIcon color="orange" icon={faPhotoVideo} />
+                        <FontAwesomeIcon color="orange" icon={faPopcorn} />
                         <span className="link-text">Plex</span>
                     </Link>
                     <Link focusKey="tvheadend" to="http://192.168.0.22:9981/">
