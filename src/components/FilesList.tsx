@@ -15,7 +15,7 @@ const FilesList: React.SFC<FilesListProps> = ({ path }: FilesListProps) => {
     const [files, setFilesList]: [FileType[], Function] = useState([]);
 
     useEffect(() => {
-        fetch(`http://192.168.0.22/json/${path}`)
+        fetch(`http://${process.env.REACT_APP_IP_ADDRESS}/json/${path}`)
             .then(res => res.json())
             .then(res => {
                 console.log(res);

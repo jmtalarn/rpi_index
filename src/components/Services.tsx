@@ -40,24 +40,24 @@ const Services: React.SFC<ServicesProps> = () => {
         <Page title="Other services running" backButton>
             <ServicesContent>
                 <FlexColumnContent>
-                    {/*<Link focusKey="jellyfin" to="http://192.168.0.22:8096">
+                    {/*<Link focusKey="jellyfin" to="http://${process.env.REACT_APP_IP_ADDRESS}:8096">
                         <FontAwesomeIcon color="mediumorchid" icon={faPopcorn} />
                         <span className="link-text">Jellyfin</span>
     </Link>*/}
-                    <Link focusKey="plex" to="http://192.168.0.22:32400/web">
+                    <Link focusKey="plex" to={`http://${process.env.REACT_APP_IP_ADDRESS}:32400/web`}>
                         <FontAwesomeIcon color="orange" icon={faPopcorn} />
                         <span className="link-text">Plex</span>
                     </Link>
-                    <Link focusKey="tvheadend" to="http://192.168.0.22:9981/">
+                    <Link focusKey="tvheadend" to={`http://${process.env.REACT_APP_IP_ADDRESS}:9981/`}>
                         <FontAwesomeIcon color="paleTurquoise" icon={faTvRetro} />
                         <span className="link-text">TVHeadend</span>
                     </Link>
 
-                    <Link focusKey="torrent" to="http://192.168.0.22:8112/">
+                    <Link focusKey="torrent" to={`http://${process.env.REACT_APP_IP_ADDRESS}:8112/`}>
                         <FontAwesomeIcon color="steelBlue" icon={faCloudDownloadAlt} />
                         <span className="link-text">Delunge</span>
                     </Link>
-                    <Link focusKey="iptv" to="http://192.168.0.22/livetv/">
+                    <Link focusKey="iptv" to={`http://${process.env.REACT_APP_IP_ADDRESS}/livetv/`}>
                         <FontAwesomeIcon color="springGreen" icon={faSatelliteDish} />
                         <span className="link-text">IP TV files</span>
                     </Link>

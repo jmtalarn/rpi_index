@@ -80,12 +80,18 @@ const Box: React.SFC<BoxProps> = ({ focusKey, file, path }: BoxProps) => {
 
     if (isPdfFile(file.name)) {
         previewFile = (
-            <PDFDocument file={`http://192.168.0.22/files/${path}/${file.name}`}>
+            <PDFDocument file={`http://${process.env.REACT_APP_IP_ADDRESS}/files/${path}/${file.name}`}>
                 <PDFPage pageNumber={1} height={200} />
             </PDFDocument>
         );
     } else if (isVideoFile(file.name)) {
-        previewFile = <ReactPlayer url={`http://192.168.0.22/files/${path}/${file.name}`} width={300} height={200} />;
+        previewFile = (
+            <ReactPlayer
+                url={`http://${process.env.REACT_APP_IP_ADDRESS}/files/${path}/${file.name}`}
+                width={300}
+                height={200}
+            />
+        );
     }
 
     return (

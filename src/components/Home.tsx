@@ -29,7 +29,7 @@ const Home: React.SFC<HomeProps> = () => {
     const [hasError, setErrors] = useState(false);
     const [folders, setFolders]: [FileType[], Function] = useState([]);
     useEffect(() => {
-        fetch('http://192.168.0.22/json')
+        fetch(`http://${process.env.REACT_APP_IP_ADDRESS}/json`)
             .then(res => res.json())
             .then(res => {
                 console.log(res);

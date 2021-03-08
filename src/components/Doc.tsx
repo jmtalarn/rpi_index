@@ -50,7 +50,7 @@ const Doc: React.SFC<DocProps> = ({ filename, path }: DocProps) => {
         <PageCenteredContent title={filename || 'NO_NAME'} backButton>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <PDFDocument
-                    file={`http://192.168.0.22/files/${path}/${filename}`}
+                    file={`http://${process.env.REACT_APP_IP_ADDRESS}/files/${path}/${filename}`}
                     onLoadSuccess={onDocumentLoadSuccess}
                 >
                     <PDFPage className="center" pageNumber={currentPage} height={700} />

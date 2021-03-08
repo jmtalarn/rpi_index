@@ -50,7 +50,7 @@ const Video: React.SFC<VideoProps> = ({ filename, path }: VideoProps) => {
                     ref={videoplayerRef}
                     autoFocus={true}
                     className="react-player"
-                    url={`http://192.168.0.22/files/${path}/${filename}`}
+                    url={`http://${process.env.REACT_APP_IP_ADDRESS}/files/${path}/${filename}`}
                     width="100%"
                     height="100%"
                     controls={true}
