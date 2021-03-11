@@ -35,6 +35,7 @@ const Page = ({ title, children, backButton, showLogo }) => {
 
     return (
         <PageStyle>
+            <title>{title}</title>
             <Header>
                 {showLogo && <Icon />}
                 <Title>{title}</Title>
