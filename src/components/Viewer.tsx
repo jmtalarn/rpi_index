@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { useParams } from 'react-router-dom';
+import { useLocation } from '@reach/router';
+import queryString from 'query-string';
 import { isVideoFile, isPdfFile } from '../utils/file-utils';
 
 import Doc from './Doc';
@@ -9,7 +10,9 @@ import Video from './Video';
 type ViewerProps = Readonly<{}>;
 
 const ProcessDocParams = () => {
-    let { path, filename } = useParams();
+    const location = useLocation();
+
+    let { path, filename } = queryString.parse(location.search);
 
     let viewer = null;
 

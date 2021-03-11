@@ -2,8 +2,10 @@ import React, { useState, useCallback, useEffect } from 'react';
 
 import styled from 'styled-components';
 
-import { Document as PDFDocument, Page as PDFPage } from 'react-pdf';
+import { Page as PDFPage } from 'react-pdf';
+import { Document as PDFDocument } from 'react-pdf/dist/esm/entry.webpack';
 import Page from './Page';
+import { useSiteMetadata } from '../utils/use-site-metadata';
 
 type DocProps = Readonly<{ filename: string | undefined; path: string | undefined }>;
 const PageCenteredContent = styled(Page)`
@@ -24,7 +26,7 @@ const Doc: React.SFC<DocProps> = ({ filename, path }: DocProps) => {
         setNumPages(numPages);
     };
     const onKeyDown = useCallback(
-        event => {
+        (event) => {
             if (!(event instanceof KeyboardEvent)) return;
             switch (event.key) {
                 case 'ArrowRight':
@@ -45,12 +47,12 @@ const Doc: React.SFC<DocProps> = ({ filename, path }: DocProps) => {
         document.addEventListener('keydown', onKeyDown);
         return () => document.removeEventListener('keydown', onKeyDown);
     }, [onKeyDown]);
-
+    const { ip: ipAddress } = useSiteMetadata();
     return (
         <PageCenteredContent title={filename || 'NO_NAME'} backButton>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <PDFDocument
-                    file={`http://${process.env.REACT_APP_IP_ADDRESS}/files/${path}/${filename}`}
+                    file={`http://${ipAddress}/files/${path}/${filename}`}
                     onLoadSuccess={onDocumentLoadSuccess}
                 >
                     <PDFPage className="center" pageNumber={currentPage} height={700} />

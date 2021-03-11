@@ -2,8 +2,9 @@ import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import ReactPlayer from 'react-player';
 import Page from './Page';
+import { useSiteMetadata } from '../utils/use-site-metadata';
 
-type VideoProps = Readonly<{ filename: string | undefined; path: string | undefined }>;
+
 const Wrapper = styled.div`
     position: relative;
     width: 90vw;
@@ -11,33 +12,10 @@ const Wrapper = styled.div`
 
     margin: 0 auto;
 `;
-const Video: React.SFC<VideoProps> = ({ filename, path }: VideoProps) => {
+const Video = ({ filename, path }) => {
     const videoplayerRef = useRef<ReactPlayer>(null);
-    // if (myVideo.paused) myVideo.play();
-    // else myVideo.pause();
+	const { ip: ipAddress} = useSiteMetadata();
 
-    // const onKeyDown = useCallback(
-    //     event => {
-    //         if (!(event instanceof KeyboardEvent)) return;
-    //         // const videoplayer = videoplayerRef.current;
-    //         console.log(event );
-
-    //         // switch (event.key) {
-    //         //     case 'ArrowRight':
-    //         //         videoplayer?.seekTo(3, 'seconds');
-    //         //         return;
-    //         //     case 'ArrowLeft':
-    //         //         videoplayer?.seekTo(3, 'seconds');
-    //         //         return;
-    //         // }
-    //     },
-    //     [videoplayerRef],
-    // );
-    // useEffect(() => {
-    //     document.addEventListener('keydown', onKeyDown);
-    //     return () => document.removeEventListener('keydown', onKeyDown);
-    // }, [onKeyDown]);
-    // console.log('Video component', path, filename);
     useEffect(() => {
         const videoplayer = videoplayerRef.current;
         (videoplayer?.getInternalPlayer() as HTMLVideoElement).focus();
@@ -50,7 +28,7 @@ const Video: React.SFC<VideoProps> = ({ filename, path }: VideoProps) => {
                     ref={videoplayerRef}
                     autoFocus={true}
                     className="react-player"
-                    url={`http://${process.env.REACT_APP_IP_ADDRESS}/files/${path}/${filename}`}
+                    url={`http://${ipAddress}/files/${path}/${filename}`}
                     width="100%"
                     height="100%"
                     controls={true}

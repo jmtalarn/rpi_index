@@ -11,8 +11,10 @@ import {
     faPhotoVideo,
     faSatelliteDish,
     faCloudDownloadAlt,
+    faScannerImage,
 } from '@fortawesome/pro-duotone-svg-icons';
-// eslint-disable-next-line no-unused-vars
+
+import { useSiteMetadata } from '../utils/use-site-metadata';
 
 type ServicesProps = Readonly<{}>;
 
@@ -36,28 +38,29 @@ const FlexColumnContent = styled.div`
     height: calc(100vh - 9rem);
 `;
 const Services: React.SFC<ServicesProps> = () => {
+    const { ip: ipAddress } = useSiteMetadata();
+
     return (
         <Page title="Other services running" backButton>
             <ServicesContent>
                 <FlexColumnContent>
-                    {/*<Link focusKey="jellyfin" to="http://${process.env.REACT_APP_IP_ADDRESS}:8096">
-                        <FontAwesomeIcon color="mediumorchid" icon={faPopcorn} />
-                        <span className="link-text">Jellyfin</span>
-    </Link>*/}
-                    <Link focusKey="plex" to={`http://${process.env.REACT_APP_IP_ADDRESS}:32400/web`}>
+                    <Link focusKey="scan" to={`http://${ipAddress}:10002`}>
+                        <FontAwesomeIcon color="gold" icon={faScannerImage} />
+                        <span className="link-text">Scanner</span>
+                    </Link>
+                    <Link focusKey="plex" to={`http://${ipAddress}:32400/web`}>
                         <FontAwesomeIcon color="orange" icon={faPopcorn} />
                         <span className="link-text">Plex</span>
                     </Link>
-                    <Link focusKey="tvheadend" to={`http://${process.env.REACT_APP_IP_ADDRESS}:9981/`}>
+                    <Link focusKey="tvheadend" to={`http://${ipAddress}:9981/`}>
                         <FontAwesomeIcon color="paleTurquoise" icon={faTvRetro} />
                         <span className="link-text">TVHeadend</span>
                     </Link>
-
-                    <Link focusKey="torrent" to={`http://${process.env.REACT_APP_IP_ADDRESS}:8112/`}>
+                    <Link focusKey="torrent" to={`http://${ipAddress}:8112/`}>
                         <FontAwesomeIcon color="steelBlue" icon={faCloudDownloadAlt} />
                         <span className="link-text">Delunge</span>
                     </Link>
-                    <Link focusKey="iptv" to={`http://${process.env.REACT_APP_IP_ADDRESS}/livetv/`}>
+                    <Link focusKey="iptv" to={`http://${ipAddress}/livetv/`}>
                         <FontAwesomeIcon color="springGreen" icon={faSatelliteDish} />
                         <span className="link-text">IP TV files</span>
                     </Link>

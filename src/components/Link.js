@@ -1,8 +1,9 @@
 import React, { useRef } from 'react';
+import { Link as GatsbyLink } from 'gatsby';
 
 import styled from 'styled-components';
 
-const StyledLink = styled.a`
+const StyledLink = styled(GatsbyLink)`
     color: ${(props) => props.theme.textColor};
     font-size: 3rem;
     text-decoration: none;
@@ -25,14 +26,14 @@ const StyledLink = styled.a`
     }
 `;
 
-const Link: React.SFC<any> = (props: any) => {
+const Link = (props) => {
     // eslint-disable-next-line no-unused-vars
-    const elementRef = useRef<HTMLAnchorElement>(null);
+    const elementRef = useRef(null);
 
     const { children, focusKey, to, ...restProps } = props;
 
     return (
-        <StyledLink ref={elementRef} href={to} {...restProps}>
+        <StyledLink ref={elementRef} to={to} {...restProps}>
             {children}
         </StyledLink>
     );
