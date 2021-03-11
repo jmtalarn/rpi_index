@@ -4,10 +4,12 @@ import ReactPlayer from 'react-player';
 import { formatDateToShortDateString, formatFileSizeMetric } from '../utils/format-utils';
 import { isVideoFile, isPdfFile } from '../utils/file-utils';
 import styled from 'styled-components';
-import { Page as PDFPage } from 'react-pdf';
-import { Document as PDFDocument } from 'react-pdf/dist/esm/entry.webpack';
+// import { Page as PDFPage } from 'react-pdf';
+// import { Document as PDFDocument } from 'react-pdf/dist/esm/entry.webpack';
 // eslint-disable-next-line no-unused-vars
 import { FileType } from './FileType';
+import ClientOnlyPDFDocument from './ClientOnlyPDFDocument';
+
 import { useSiteMetadata } from '../utils/use-site-metadata';
 
 const FileInfo = styled.div`
@@ -70,16 +72,18 @@ const Box: React.SFC<BoxProps> = ({ focusKey, file, path }: BoxProps) => {
 
     if (isPdfFile(file.name)) {
         previewFile = (
-            <PDFDocument file={`http://${ipAddress}/files/${path}/${file.name}`}>
-                <PDFPage pageNumber={1} height={200} />
-            </PDFDocument>
+            <ClientOnlyPDFDocument
+                file={`http://${ipAddress}/files/${path}/${file.name}`}
+                pageNumber={1}
+                height={200}
+            />
         );
     } else if (isVideoFile(file.name)) {
         previewFile = <ReactPlayer url={`http://${ipAddress}/files/${path}/${file.name}`} width={300} height={200} />;
     }
 
     return (
-        <StyledBox to={`/viewer/?path=${path}&filename=${file.name}`} ref={elementRef}>
+        <StyledBox to={`/viewer?path=${path}&filename=${file.name}`} ref={elementRef}>
             <h3>{file.name}</h3>
             <FileContent>
                 {previewFile}

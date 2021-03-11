@@ -15,6 +15,7 @@ const PageStyle = styled.div`
 const Title = styled.h1`
     flex: 1;
     font-weight: 100;
+    color: ${(props) => props.theme.textColor};
 `;
 
 const Header = styled.header`

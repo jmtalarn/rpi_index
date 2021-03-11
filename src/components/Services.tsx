@@ -12,6 +12,7 @@ import {
     faSatelliteDish,
     faCloudDownloadAlt,
     faScannerImage,
+    faPrint,
 } from '@fortawesome/pro-duotone-svg-icons';
 
 import { useSiteMetadata } from '../utils/use-site-metadata';
@@ -63,6 +64,10 @@ const Services: React.SFC<ServicesProps> = () => {
                     <Link focusKey="iptv" to={`http://${ipAddress}/livetv/`}>
                         <FontAwesomeIcon color="springGreen" icon={faSatelliteDish} />
                         <span className="link-text">IP TV files</span>
+                    </Link>
+                    <Link focusKey="printer" to={`http://${ipAddress}:631`}>
+                        <FontAwesomeIcon color="tomato" icon={faPrint} />
+                        <span className="link-text">CUPS</span>
                     </Link>
                 </FlexColumnContent>
             </ServicesContent>

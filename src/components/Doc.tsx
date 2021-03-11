@@ -1,9 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 
 import styled from 'styled-components';
-
-import { Page as PDFPage } from 'react-pdf';
-import { Document as PDFDocument } from 'react-pdf/dist/esm/entry.webpack';
+import ClientOnlyPDFDocument from './ClientOnlyPDFDocument';
 import Page from './Page';
 import { useSiteMetadata } from '../utils/use-site-metadata';
 
@@ -18,13 +16,11 @@ const PageCenteredContent = styled(Page)`
 `;
 
 const Doc: React.SFC<DocProps> = ({ filename, path }: DocProps) => {
+    const { ip: ipAddress } = useSiteMetadata();
+
     const [numPages, setNumPages] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
-    const onDocumentLoadSuccess = (document: any) => {
-        const { numPages } = document;
 
-        setNumPages(numPages);
-    };
     const onKeyDown = useCallback(
         (event) => {
             if (!(event instanceof KeyboardEvent)) return;
@@ -43,20 +39,26 @@ const Doc: React.SFC<DocProps> = ({ filename, path }: DocProps) => {
         },
         [currentPage, setCurrentPage, numPages],
     );
+
+    const onDocumentLoadSuccess = (document: any) => {
+        const { numPages } = document;
+        setNumPages(numPages);
+    };
+
     useEffect(() => {
         document.addEventListener('keydown', onKeyDown);
         return () => document.removeEventListener('keydown', onKeyDown);
     }, [onKeyDown]);
-    const { ip: ipAddress } = useSiteMetadata();
+
     return (
         <PageCenteredContent title={filename || 'NO_NAME'} backButton>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <PDFDocument
+                <ClientOnlyPDFDocument
                     file={`http://${ipAddress}/files/${path}/${filename}`}
+                    pageNumber={currentPage}
+                    height={700}
                     onLoadSuccess={onDocumentLoadSuccess}
-                >
-                    <PDFPage className="center" pageNumber={currentPage} height={700} />
-                </PDFDocument>
+                />
             </div>
         </PageCenteredContent>
     );

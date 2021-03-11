@@ -39,3 +39,4 @@ node_modules/
 .env.*.local
 build
 index-rpi/www
+public/
