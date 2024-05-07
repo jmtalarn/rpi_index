@@ -10,7 +10,7 @@
         "chroma-js": "^2.1.0",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
-        "react-pdf": "^4.1.0",
+        "react-pdf": "^7.7.3",
         "react-player": "^1.15.3",
         "react-router-dom": "^5.1.2",
         "react-scripts": "3.4.0",
